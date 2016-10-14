@@ -1,4 +1,4 @@
-# cleaning and getting data assignmnt
+# cleaning and getting data assignment
 
 ## this is the pipeline was done for the data:
 
