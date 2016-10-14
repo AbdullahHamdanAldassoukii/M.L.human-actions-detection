@@ -1,20 +1,9 @@
-### here is the pipe line used with this machine learing issue:
+# cleaning and getting data assignmnt
 
-+ first:
+## this is the pipeline was done for the data:
 
-## reading the data :
-
-## read X_test y_test .. X_train y_train .. activity_labels .. features .. subject 
-
-+ second:
-
-## binding the train and test datasets to one data set for every tow similar set.
-
-## => make : 1- X set .. 2- y set (id) .. 3- y set (name)"by indexing the every id in y_id to its label" .. 4- subject .
-
-+ third: 
-
-## extracting  the requeired data (cols) from "X set" . and asigne it to "Data"
-
-## and bind the y set to Data too.
-
+1. Mergeing the training and the test sets to creating one data set.
+2. Extracting only the measurements on the mean and standard deviation for each measurement.
+3. Useing descriptive activity names to name the activities in the data set
+4. Appropriately labels the data set with descriptive variable names.
+5. From the data set in step 4, creates a second, independent tidy data set with the average of each variable for each activity and each subject.

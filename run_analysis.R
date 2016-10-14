@@ -2,24 +2,29 @@ run_analysis<-function(){
         
         ## reading files ...
         library(dplyr)
+        library(plyr)
         library(data.table)
         library(reshape2)
-        library(plyr)
         library(stringr)
-        setwd("C:/Users/Abdalla _Hn/Documents/UCI HAR Dataset")
+        
+        ## PUT YOUR WORKING DIRECTORY THAT CONTAIN THE DATA FOLDER HERE:
+        WD<-"F:/stuff/proj"
+        
+        setwd(WD)
+        setwd("./UCI HAR Dataset")
         features<-fread("features.txt")
         activity_labels<-fread("activity_labels.txt",col.names = c("activity_id","activity_name"))
         
-        ## training sets
+        ## read training sets
         
-        setwd("C:/Users/Abdalla _Hn/Documents/UCI HAR Dataset/train")
+        setwd("./train")
         xtrain<-fread("X_train.txt",col.names =features$V2 )
         ytrain_id<-fread("y_train.txt",col.names = "activity_id")
         subject_train<-fread("subject_train.txt")
         
-        ## test sets
+        ## read test sets
         
-        setwd("C:/Users/Abdalla _Hn/Documents/UCI HAR Dataset/test")
+        setwd("../test")
         xtest<-fread("X_test.txt",col.names =features$V2 )
         ytest_id<-fread("y_test.txt",col.names = "activity_id")
         subject_test<-fread("subject_test.txt")
@@ -38,36 +43,27 @@ run_analysis<-function(){
         
         ## step (3) : naming activities in the data set
         
-        Y<-merge(y_id,activity_labels,by="activity_id",all=T)
+        Y<-left_join(y_id,activity_labels,by="activity_id")
         
         ## all data
-        Data<-cbind(extracted_X,Y)
-        Data$subject<-as.character(unlist(subject))
-        Data<-as.data.frame(Data)
         
-        ## step (4) : ALREDY DONE :)
+        All_Data<-cbind(extracted_X,Y)
+        All_Data$subject<-as.character(unlist(subject))
+        
+        ## step (4): 
+        ## descriptive variable names into dataset
+        names(All_Data) <- sub("^t","time",names(All_Data))
+        names(All_Data) <- sub("^f","frequency",names(All_Data))
+        names(All_Data) <- sub("Acc","Accelerometer",names(All_Data))
+        names(All_Data) <- sub("Gyro","Gyroscope",names(All_Data))
+        names(All_Data) <- sub("Mag","Magnitude",names(All_Data))
         
         ## STEP (5) :
-        d2<-as.data.frame(dcast(melt(Data), subject ~ variable, mean))
-        d1<-as.data.frame(dcast(melt(Data),activity_name ~ variable, mean))
         
-        
-        d12<-join(y = d1,x = Data,by="activity_name",type="left")
-        
-        d22<-join(x = Data , y = d2 , by="subject",type="left")
-        
-        names(d12)<-str_replace(pattern =  "y$",replacement = " mean by activity_name",string = names(d12))
-        names(d22)<-str_replace(pattern="y$",replacement=" mean by subject",string=names(d22))
-        
-        Data2<-join(x = Data,y = d22,by="subject",type="left")
-        
-        Data1<-join(x = Data,y = d12,by="activity_name",type="left")
-        
-        Data<-cbind(Data1,Data2)
-        
-        
-        
+        tidy_data<-All_Data%>%
+                group_by(activity_name,subject) %>%
+                summarise_each(funs(mean(., na.rm=TRUE)),-(activity_id:subject))
        
         
-        
+        write.table(tidy_data,"../tidydata.txt",row.names = F)
 }
