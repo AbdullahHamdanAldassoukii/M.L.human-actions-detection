@@ -8,7 +8,7 @@ run_analysis<-function(){
         library(stringr)
         
         ## PUT YOUR WORKING DIRECTORY THAT CONTAIN THE DATA FOLDER HERE:
-        WD<-"F:/stuff/proj"
+        WD<-"~/"
         
         setwd(WD)
         setwd("./UCI HAR Dataset")
