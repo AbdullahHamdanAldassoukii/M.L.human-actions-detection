@@ -7,10 +7,21 @@
 + every volunteer did some activity in order to training or testing measurment.
 + every activity has id and name like walking , standing ...
 
-## variable :
+## features and variables :
 
-### measurment:
+## Activity name with its ids:
 
++ 1 WALKING 
++ 2 WALKING_UPSTAIRS
++ 3 WALKING_DOWNSTAIRS 
++ 4 SITTING 
++ 5 STANDING 
++ 6 LAYING 
+
+## subject:
+### the subject ids
+
+### features:
 
 - "TimeBodyAccelerometer-mean()-X" 
 - "TimeBodyAccelerometer-mean()-Y" 
@@ -91,17 +102,3 @@
 - "FrequencyBodyGyroscopeJerkMagnitude-mean()" 
 - "FrequencyBodyGyroscopeJerkMagnitude-std()" 
 - "FrequencyBodyGyroscopeJerkMagnitude-meanFreq()"
-
-
-
-## Activity name with its ids:
-
-+ 1 WALKING 
-+ 2 WALKING_UPSTAIRS
-+ 3 WALKING_DOWNSTAIRS 
-+ 4 SITTING 
-+ 5 STANDING 
-+ 6 LAYING 
-
-## subject:
- ### the subject ids
