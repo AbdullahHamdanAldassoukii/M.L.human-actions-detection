@@ -10,11 +10,11 @@
 
  ## files descriptions:
  
- +run_analysis.R : to preforme the data analysis.
- +CodeBook.md : the descriptions of the output data.
++run_analysis.R : to preforme the data analysis.
++CodeBook.md : the descriptions of the output data.
 
  
- ## notes:
- ### the script assumes that the "UCI HAR Dataset" exists in your home directory
- ### else you have to assigne the directory that contains the "UCI HAR Dataset" to the "WD" variable in the biggining of the script
- ### with replacing "/" instead of "\".
+## notes:
+#### the script assumes that the "UCI HAR Dataset" exists in your home directory
+#### else you have to assigne the directory that contains the "UCI HAR Dataset" to the "WD" variable in the biggining of the script
+#### with replacing "/" instead of "\".
